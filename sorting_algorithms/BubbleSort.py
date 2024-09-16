@@ -2,6 +2,8 @@
 import os
 from dotenv import load_dotenv
 from logging import getLogger
+from uga.list_utils import list_elements_have_consistent_type
+
 
 load_dotenv()
 
@@ -21,7 +23,7 @@ class BubbleSort(object):
         lenght:int = len(data_list)
         self.data_list = data_list
         
-        if self.__checkListTypeConsistency(self.data_list):
+        if list_elements_have_consistent_type(self.data_list):
             
             for i in range(0, lenght-1):
                 for j in range(0, lenght-i-1):
@@ -33,17 +35,17 @@ class BubbleSort(object):
             # print(f"ERROR: Cannot sort the list. It does not contain homogeneous types for all elements: {data_list}")
             err_message = f"ERROR: Cannot sort the list. Type inconsistency detected... the list does not contain homogeneous type for all elements in the list: {data_list}"
             logger.error(msg=err_message)
-            return err_message
+            return None, err_message
         if VERBOSE:
             print(data_list)
         
         return data_list
     
-    def __checkListTypeConsistency(self, data_list):
-        first_elm_type: type = type(data_list[0])
-        is_hougeneousTyped_list: bool = all(isinstance(x, first_elm_type) for x in data_list)
+    # def __checkListTypeConsistency(self, data_list):
+    #     first_elm_type: type = type(data_list[0])
+    #     is_hougeneousTyped_list: bool = all(isinstance(x, first_elm_type) for x in data_list)
         
-        return is_hougeneousTyped_list
+    #     return is_hougeneousTyped_list
             
 
 if __name__ == "__main__":

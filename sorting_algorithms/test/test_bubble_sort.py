@@ -21,6 +21,6 @@ def test__bubble_sort_consistent_listElements_type():
     data = [1,2,22,"behzad",33]
     
     bs_obj = BubbleSort()
-    sorted_data = bs_obj.sort(data)
+    sorted_data, err_message = bs_obj.sort(data)
     
-    assert sorted_data == (f"ERROR: Cannot sort the list. Type inconsistency detected... the list does not contain homogeneous type for all elements in the list: {data}")
+    assert (sorted_data == None) and err_message == (f"ERROR: Cannot sort the list. Type inconsistency detected... the list does not contain homogeneous type for all elements in the list: {data}")
